@@ -5,6 +5,9 @@
     "author": "zhangwj999",
     "private": true,
     "repository": {},
+    "scripts": {
+      "index": "coffee src/codeMachine.coffee"
+    },
     "devDependencies": {
       "coffeeify": "^1.1.0",
       "grunt": "^0.4.5",

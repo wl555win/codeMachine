@@ -17,7 +17,7 @@ interFaceRlt = []
 if Config.createAll
 	interFaceRlt = InterfaceDefs
 else
-	interfaceNames.map ( d )->
+	Config.interfaceNames.map ( d )->
 		InterfaceDefs.map ( defTmp )->
 			if defTmp.interfaceName is d
 				interFaceRlt.push defTmp
@@ -28,4 +28,13 @@ reg = /(.*\/)(.*)(\.cmd)/
 interFaceRlt.map ( interDefTmp )->
 	rlt = reg.exec( interDefTmp.interfaceUrl )
 	cmdName = rlt[2]
-	fs.writeFile( CODE_PATH + cmdName + '.java', TemplatesUtils.renderMethod( interDefTmp ) ,(err)->console.log('has finished') )
+	writeEnum = [
+		{ name: CODE_PATH + cmdName + 'Cmd.java', template: 'renderMethod' }
+		{ name: CODE_PATH + 'I' + cmdName + 'Domain.java', template: 'renderIDomain' }
+		{ name: CODE_PATH + 'I' + cmdName + 'Service.java', template: 'renderIService' }
+		{ name: CODE_PATH + cmdName + 'Domain.java', template: 'renderDomain' }
+		{ name: CODE_PATH + cmdName + 'Service.java', template: 'renderService' }
+	]
+	for writeConf in writeEnum
+		fs.writeFile( writeConf.name, TemplatesUtils[writeConf.template]( interDefTmp ) , 
+			{ flag: 'a' }, (err)->console.log( """#{interDefTmp.interfaceName} has finished""" ) )
