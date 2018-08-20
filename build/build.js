@@ -5,8 +5,8 @@ require('shelljs/global')
 var path = require('path')
 var ora = require('ora')
 var webpack = require('webpack')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // CSS文件单独提取出来
+// var ExtractTextPlugin = require('extract-text-webpack-plugin')
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // CSS文件单独提取出来
 
 
 console.log(
@@ -41,20 +41,28 @@ let webpackConfig = {
 			{
 				test: /\.scss$/,
 				use: [
-					MiniCssExtractPlugin.loader,
+					// MiniCssExtractPlugin.loader,
 					// "style-loader", // creates style nodes from JS strings
-					"css-loader", // translates CSS into CommonJS
-					"scss-loader" // compiles Sass to CSS, using Node Sass by default
+					// "css-loader", // translates CSS into CommonJS
+					"sass-loader" // compiles Sass to CSS, using Node Sass by default
+				]
+			},
+			{
+				test: /\.css$/,
+				use: [
+					// MiniCssExtractPlugin.loader,
+					"style-loader", // creates style nodes from JS strings
+					"css-loader" // translates CSS into CommonJS
 				]
 			}
 		]
 	},
-	plugins: [
-		// extract css into its own file
-		new MiniCssExtractPlugin({
-			filename: `${assetsPath}css/[name].css`,
-		}),
-	]
+	// plugins: [
+	// 	// extract css into its own file
+	// 	new MiniCssExtractPlugin({
+	// 		filename: `${assetsPath}css/[name].css`,
+	// 	}),
+	// ]
 }
 
 webpack(webpackConfig, function (err, stats) {

@@ -1,0 +1,42 @@
+#app{
+	width: 90%;
+	margin: auto;
+	text-align: center;
+}
+#app #trans{
+	width: 150px;
+	height: 50px;
+	line-height: 50px;
+	border: 1px solid #f2f2f2;
+	background-color: #488aff;
+	cursor: pointer;
+	text-align: center;
+	margin: auto;
+	margin-top: 15px;
+}
+.output .navbar{
+	width: 1000px;
+	height: 35px;
+	line-height: 35px;
+	display: flex;
+	text-align: center;
+	margin: auto;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.navitem{
+	width: 200px;
+	height: 100%;
+	line-height: 35px;
+	border: 1px solid #f2f2f2;
+	cursor: pointer;
+}
+
+.navitem.seled{
+	background-color: #488aff;
+}
+
+.content{
+
+}
