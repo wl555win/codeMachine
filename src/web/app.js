@@ -68,10 +68,10 @@ var App = Vue.extend({
 			let cmdName = rlt[2]
 			let writeEnum = [
 				{ name: 'cmdRlt', template: 'renderMethod' },
-				{ name: 'iServiceRlt', template: 'renderIDomain' },
-				{ name: 'serviceRlt', template: 'renderIService' },
-				{ name: 'idomainRlt', template: 'renderDomain' },
-				{ name: 'domainRlt', template: 'renderService' }
+				{ name: 'iServiceRlt', template: 'renderIService' },
+				{ name: 'serviceRlt', template: 'renderService' },
+				{ name: 'idomainRlt', template: 'renderIDomain' },
+				{ name: 'domainRlt', template: 'renderDomain' }
 			]
 			writeEnum.map( ( d )=>{
 				self[d.name] = TemplatesUtils[d.template]( interDefTmp )
