@@ -1,5 +1,6 @@
 fs = require 'fs'
 Utils = require 'utils'
+dirUtils = require 'utils/dirUtils'
 TemplatesUtils = require 'templates'
 InterfaceDefs = require 'interfaceDef/data' #接口定义的json文件
 Config = require 'config'
@@ -10,7 +11,7 @@ CODE_PATH = Config.codePath
 exists = fs.existsSync( CODE_PATH )
 
 if not exists
-	Utils.mkdirsSync( CODE_PATH )
+	dirUtils.mkdirsSync( CODE_PATH )
 
 #过滤出接口的定义
 interFaceRlt = []

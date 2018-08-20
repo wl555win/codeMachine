@@ -1,24 +1,27 @@
-var TemplatesUtils = require( 'templates' )
+var TemplatesUtils = require( 'templates/index.coffee' )
 
 var App = Vue.extend({
 	template: `
-		<div class="input">
-			<textarea rows="8" cols="50" v-module="inputJson"></textarea>
-		</div>
-		<div class="output">
-			<div class="navbar">
-				<div class="navitem" :class="[tabSel=='1' ? 'seled' : '']">CMD</div>
-				<div class="navitem" :class="[tabSel=='2' ? 'seled' : '']">IService</div>
-				<div class="navitem" :class="[tabSel=='3' ? 'seled' : '']">Service</div>
-				<div class="navitem" :class="[tabSel=='4' ? 'seled' : '']">IDomain</div>
-				<div class="navitem" :class="[tabSel=='5' ? 'seled' : '']">Domain</div>
+		<div id="app">
+			<div class="input">
+				<textarea rows="20" cols="150" v-model="inputJson"></textarea>
 			</div>
-			<div class="content">
-				<textarea v-show="tabSel=='1'" rows="12" cols="50">{{cmdRlt}}</textarea>
-				<textarea v-show="tabSel=='2'" rows="12" cols="50">{{iServiceRlt}}</textarea>
-				<textarea v-show="tabSel=='3'" rows="12" cols="50">{{serviceRlt}}</textarea>
-				<textarea v-show="tabSel=='4'" rows="12" cols="50">{{idomainRlt}}</textarea>
-				<textarea v-show="tabSel=='5'" rows="12" cols="50">{{domainRlt}}</textarea>
+			<div id="trans" @click="trans">生成代码</div>
+			<div class="output">
+				<div class="navbar">
+					<div class="navitem" @click="nav( '1' )" :class="[tabSel=='1' ? 'seled' : '']">CMD</div>
+					<div class="navitem" @click="nav( '2' )" :class="[tabSel=='2' ? 'seled' : '']">IService</div>
+					<div class="navitem" @click="nav( '3' )" :class="[tabSel=='3' ? 'seled' : '']">Service</div>
+					<div class="navitem" @click="nav( '4' )" :class="[tabSel=='4' ? 'seled' : '']">IDomain</div>
+					<div class="navitem" @click="nav( '5' )" :class="[tabSel=='5' ? 'seled' : '']">Domain</div>
+				</div>
+				<div class="content">
+					<textarea v-show="tabSel=='1'" rows="20" cols="150">{{cmdRlt}}</textarea>
+					<textarea v-show="tabSel=='2'" rows="20" cols="150">{{iServiceRlt}}</textarea>
+					<textarea v-show="tabSel=='3'" rows="20" cols="150">{{serviceRlt}}</textarea>
+					<textarea v-show="tabSel=='4'" rows="20" cols="150">{{idomainRlt}}</textarea>
+					<textarea v-show="tabSel=='5'" rows="20" cols="150">{{domainRlt}}</textarea>
+				</div>
 			</div>
 		</div>
 	`,
@@ -41,15 +44,28 @@ var App = Vue.extend({
 			let rlt = reg.exec( interDefTmp.interfaceUrl )
 			let cmdName = rlt[2]
 			let writeEnum = [
-				{ name: 'cmdRlt', template: 'renderMethod' }
-				{ name: 'iServiceRlt', template: 'renderIDomain' }
-				{ name: 'serviceRlt', template: 'renderIService' }
-				{ name: 'idomainRlt', template: 'renderDomain' }
+				{ name: 'cmdRlt', template: 'renderMethod' },
+				{ name: 'iServiceRlt', template: 'renderIDomain' },
+				{ name: 'serviceRlt', template: 'renderIService' },
+				{ name: 'idomainRlt', template: 'renderDomain' },
 				{ name: 'domainRlt', template: 'renderService' }
 			]
 			writeEnum.map( ( d )=>{
 				self[name] = TemplatesUtils[writeConf.template]( interDefTmp )
 			} )
+			this.$forceUpdate()
+		},
+		nav( item ){
+			this.tabSel = item
+		},
+		trans(){
+			try{
+				console.log( this.inputJson )
+				JSON.parse( this.inputJson ) //如果符合JSON格式
+				this.reduceOutPut()
+			}catch( e ){
+				console.log(e)
+			}
 		}
 	},
 	watch:{
