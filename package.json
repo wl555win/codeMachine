@@ -31,6 +31,8 @@
     "mini-css-extract-plugin": "^0.4.1"
   },
   "dependencies": {
-    "JSON": "^1.0.0"
+    "JSON": "^1.0.0",
+    "xml2js": "^0.4.19",
+    "lodash": "^4.17.10"
   }
 }

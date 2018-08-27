@@ -1,0 +1,12 @@
+<table id="IMM_CUST_TYPE" name="工业公司档位信息表" pkg="" jspPath="">
+	<!-- ======================================================================-->
+	<!-- 我的查询标题                                                -->
+	<!-- 创建人: 王斌       创建时间: 2017-07-24                          -->
+	<!-- ====================================================================  -->
+	<column id="COM_ID" primaryKey="true" required="true" type="VARCHAR" size="30" name="商业公司编码"/>
+	<column id="CUST_TYPE" primaryKey="true" required="true" type="VARCHAR" size="30" name="档位"/>
+	<column id="CUST_TYPE_NAME" required="true" type="VARCHAR" size="50" name="档位名称"/>						
+	<column id="IS_USE"  type="CHAR" size="1" name="是否使用"/>	
+	<column id="TYPE_KIND"  type="CHAR" size="5" name="类型"/>	
+	<column id="UPDATE_DATE"  type="CHAR" size="8" name="更新时间"/>						
+</table>
